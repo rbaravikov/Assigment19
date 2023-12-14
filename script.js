@@ -47,7 +47,7 @@ checkbox.addEventListener('click', filterBasedOnVipCheckbox)
 searchBtn.addEventListener('click', (e) =>{
     e.preventDefault()
     const searchInput = document.getElementById("search")
-    if(searchInput.value === '') return
+    if(searchInput.value === '') return alert("Cannot search if 'search.input' is empty (:")
     const table = document.querySelector("table")
         table.innerHTML = `
     <tr><th>ID</th><th>Photo</th><th>Name</th><th>Surname</th><th>City</th><th>Favourite Color</th></tr>`
