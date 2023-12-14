@@ -29,7 +29,7 @@ const tableUpdate = (element) => {
     row.innerHTML = `<td>${element.id}</td><td><img src="${element.image}" alt="profile_pic"></td><td>${firstName}</td><td>${lastName}</td><td>${element.city}</td><td>${element.fav_color}</td>`
 }
 
-checkbox.addEventListener('click', () => {
+const filterBasedOnVipCheckbox = () => {
     if(checkbox.checked) {
         const table = document.querySelector("table")
         table.innerHTML = `
@@ -40,8 +40,9 @@ checkbox.addEventListener('click', () => {
         table.innerHTML = `
     <tr><th>ID</th><th>Photo</th><th>Name</th><th>Surname</th><th>City</th><th>Favourite Color</th></tr>`
         dataArray.map(x => tableUpdate(x))
-}
-})
+}}
+
+checkbox.addEventListener('click', filterBasedOnVipCheckbox)
 
 searchBtn.addEventListener('click', (e) =>{
     e.preventDefault()
@@ -53,6 +54,8 @@ searchBtn.addEventListener('click', (e) =>{
     dataArray.map(x => {if (x.name.toLowerCase().includes(searchInput.value.toLowerCase()) && checkbox.checked == x.vip) tableUpdate(x)
     })
     if(document.querySelectorAll("tr").length < 2) {
-        alert("Not found")
+        dataArray.map(element => tableUpdate(element));
+        filterBasedOnVipCheckbox()
+        return alert("Not found")
     }
 })
